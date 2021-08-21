@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Login</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
+    <style>
+        .vertical-center {
+          min-height: 100%;
+          min-height: 100vh;
+
+          display: flex;
+          align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron vertical-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h1>Login page</h1>
+                    <form th:action="@{/login}" method="post">
+                        <div th:if="${param.error}">
+                            <div class="alert alert-danger">
+                                Usuário ou senha inválidos.
+                            </div>
+                        </div>
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-info">
+                                You have been logged out.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Usuário</label>:
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   class="form-control"
+                                   autofocus="autofocus"
+                                   placeholder="Usuário">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha</label>:
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Senha">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-block"  value="ACESSAR">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

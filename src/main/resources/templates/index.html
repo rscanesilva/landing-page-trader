@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Traders | LandingPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #323232;
+        }
+        .vertical-center {
+            min-height: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            background-color: #323232;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron vertical-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+                    <blockquote class="blockquote text-center text-white">
+                        <p class="h1 text-center">Trader Completo</p>
+                        <p class="h3" style="color:#b85151">Lista de espera</p>
+                    </blockquote>
+                    <blockquote  class="blockquote text-white">
+                        <p class="mb-0">Essa é a lista de espera para você que tem interesse em participar da <b>Mentoria Trader</b> completa com Bruno Rocha.</p>
+                        <br/>
+                        <p class="mb-0">Informe os dados solicitados no formulário abaixo para entrarmos em contato assim que abrir novas vagas.</p>
+                    </blockquote>
+
+                    <form action="#" th:action="@{/lead}" th:object="${lead}" method="post">
+                        <div class="form-group">
+                            <dt  for="nome" class="text-white">Nome</dt>
+                            <input class="form-control" type="text" th:field="*{nome}" id="nome" placeholder="Nome" th:required="required">
+                            <span class="alert alert-warning" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                        </div>
+                        <div class="form-group">
+                            <dt for="email" class="text-white">Email</dt>
+                            <input class="form-control" type="email" th:field="*{email}" id="email" placeholder="Email" th:required="required">
+                            <span class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <div class="form-group">
+                            <dt for="celular" class="text-white">Celular</dt>
+                            <input class="form-control" type="tel" th:field="*{celular}" id="celular" placeholder="Celular" th:required="required" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"
+                                   autocomplete="off">
+                            <span class="text-muted">Formato exigido: 00 00000-0000.</span>
+                            <span class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="receberAviso" th:field="*{receberAviso}" th:required="required">
+                            <label class="form-check-label text-white" for="receberAviso">Deseja receber um aviso de novas turmas?</label>
+                            <span class="alert alert-warning" th:if="${#fields.hasErrors('receberAviso')}" th:errors="*{receberAviso}"></span>
+                        </div>
+                        <br/>
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-success btn-block" value="QUERO SABER QUANDO AS VAGAS ABRIREM">
+                            <br/>
+                            <span class="text-muted"><span class="material-icons">lock</span>
+                                Suas informações estão 100% seguras e não serão compartilhadas com nenhuma outra lista.
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/traders
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
